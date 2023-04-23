@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.javafx)
     alias(libs.plugins.shadowJar)
     `kotlin-doc`
+    `publish-on-maven`
 }
 
 val arguments: String? by project
@@ -19,7 +20,7 @@ dependencies {
 
     libs.javafx.graphics.get().let {
         val dependencyNotation = "${it.module.group}:${it.module.name}:${it.versionConstraint.preferredVersion}"
-        listOf("win", "linux", "mac").forEach { platform ->
+        listOf("win", "linux", "mac", "mac-aarch64").forEach { platform ->
             runtimeOnly("$dependencyNotation:$platform")
         }
     }
